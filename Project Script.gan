@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2016-11-29" view-index="0" gantt-divider-location="353" resource-divider-location="300" version="2.8.1" locale="en_US">
+    <description/>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd3" name="Name" width="199" order="0"/>
+        <field id="tpd4" name="Begin date" width="75" order="1"/>
+        <field id="tpd5" name="End date" width="75" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="53" name="Rapport de Projet" meeting="false" start="2016-12-02" duration="3" complete="0" expand="true">
+            <task id="19" name="OBS" color="#8cb6ce" meeting="false" start="2016-12-02" duration="2" complete="3" expand="true"/>
+            <task id="20" name="PBS" meeting="false" start="2016-12-02" duration="2" complete="0" expand="true"/>
+            <task id="52" name="WBS" color="#8cb6ce" meeting="false" start="2016-12-02" duration="2" complete="0" expand="true"/>
+            <task id="23" name="GANTT" meeting="false" start="2016-12-02" duration="3" complete="0" expand="true"/>
+            <task id="24" name="PERT" meeting="false" start="2016-12-02" duration="3" complete="0" expand="true"/>
+        </task>
+        <task id="55" name="Dossier de spécifications" meeting="false" start="2016-12-05" duration="2" complete="0" expand="true">
+            <task id="25" name="Choix Techniques" meeting="false" start="2016-12-05" duration="1" complete="0" expand="true"/>
+            <task id="26" name="Conception" meeting="false" start="2016-12-05" duration="1" complete="0" expand="true"/>
+            <task id="27" name="Stratégie de sauvegarde" meeting="false" start="2016-12-05" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="58" name="Serveur Fichiers" meeting="false" start="2016-12-05" duration="5" complete="0" expand="true">
+            <task id="34" name="Serveur Windows" meeting="false" start="2016-12-05" duration="1" complete="0" expand="true"/>
+            <task id="36" name="Script envoi sur HTTP" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true"/>
+            <task id="37" name="Script envoi sur DNS" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true"/>
+            <task id="38" name="Script lancement scripts" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true"/>
+        </task>
+        <task id="59" name="Serveur HTTP" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true">
+            <task id="39" name="Script mise en ligne" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true"/>
+            <task id="40" name="Lecture fichier de visibilité des sites" meeting="false" start="2016-12-07" duration="3" complete="0" expand="true"/>
+            <task id="41" name="Plannification des scripts" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="60" name="Serveur DNS" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true">
+            <task id="42" name="Réplication serveur DNS" meeting="false" start="2016-12-06" duration="4" complete="0" expand="true"/>
+            <task id="44" name="Script rajout nom de domaine" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true"/>
+            <task id="43" name="Plannification des réplications" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="28" name="Procédures de setup" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true"/>
+        <task id="61" name="Soutenance" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true">
+            <task id="33" name="Powerpoint" meeting="false" start="2016-12-08" duration="2" complete="0" expand="true"/>
+            <task id="64" name="Soutenance ( oral )" meeting="false" start="2016-12-09" duration="1" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
