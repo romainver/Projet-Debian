@@ -28,18 +28,18 @@ while [ $i -le $countu ]
 do
 	p="$(echo $up | cut -d " " -f$i)"
 	if [ ! -f /etc/apache2/sites-available/$p.project.fr.conf ]; then
-		cat <<-FinCat >> /etc/apache2/sites-available/$p.project.fr.conf
-		<VirtualHost $p.project.fr>
-			ServerName $p.project.fr.conf
+		cat << FinCat >> /etc/apache2/sites-available/$p.project.fr.conf
+<VirtualHost $p.project.fr>
+	ServerName $p.project.fr.conf
 
-			ServerAdmin webmaster@localhost
-			ServerPath "/var/www/$p/"
-			DocumentRoot "/var/www/$p"
-			ErrorLog \${APACHE_LOG_DIR}/error.log
-			CustomLog \${APACHE_LOG_DIR}/access.log combined
-		</VirtualHost>
+	ServerAdmin webmaster@localhost
+	ServerPath "/var/www/$p/"
+	DocumentRoot "/var/www/$p"
+	ErrorLog \${APACHE_LOG_DIR}/error.log
+	CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
 
-		FinCat
+FinCat
 	fi
 
 	echo $p >> ./tmp/upfinal
