@@ -22,7 +22,7 @@ cat << LZF >> /etc/bind/named.conf.local
 zone "$1.fr" IN {
 	type master;
 	file "etc/bind/db.$1.fr";
-}
+};
 
 LZF
 
@@ -36,7 +36,7 @@ zone "2.0.10.in-addr.arpa" {
 	type master;
 	notify no;
 	file "/etc/bind/db.10";
-}
+};
 
 ILZF
 
