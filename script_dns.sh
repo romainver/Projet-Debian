@@ -35,7 +35,7 @@ eval $bind
 
 # Création du fichier de zone inversée
 
-cat << ILZF > /etc/bind/named.conf.local
+cat << ILZF >> /etc/bind/named.conf.local
 
 zone "2.0.10.in-addr.arpa" { # Modifier l'ip inversée en fonction de la machine utilisée
 	type master;
@@ -55,7 +55,7 @@ cat << DBIF >> /etc/bind/db.10
 			2419200
 			604800 )
 @	IN	NS	PS.$1.project.fr.
-10	IN	PTR	PS.$1.project.fr.
+15	IN	PTR	PS.$1.project.fr. # Le numéro correspond au dernier élément de l'adresse IP uilisée
 
 DBIF
 
