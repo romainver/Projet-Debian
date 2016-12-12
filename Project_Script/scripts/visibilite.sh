@@ -12,26 +12,28 @@ countd=$[$(echo $down | grep -o " " | wc -l)+1]
 cd "../Partage"
 unzip *.zip
 rm *.zip
-ls -d */ | cut -d "/" -f 3 >> ../scripts/tmp/lsls
+ls -d */ | cut -d "/" -f 1 >> ../scripts/tmp/lsls
 cd "../scripts"
 
 i="1"
 j="1"
 
+
 while read p; do
 	if [ -d "/var/www/$p" ]; then
-		tar -zcvf "$p"-`date "+%d.%m.%Y"`.tar.gz /var/www/$p
-		rm -rf /var/www/$p
-		mv "$p"-`date "+%d.%m.%Y"`.tar.gz ../backup
-		mv ../Partage/$p /var/www/"$p"
+		tar -zcvf $p.`date "+%d.%m.%Y"`.tar.gz /var/www/$p
+		mv $p.`date "+%d.%m.%Y"`.tar.gz ../backup
+		mv ../Partage/$p /var/www/$p
 	else
-		mv ../Partage/$p /var/www/"$p"
+		mv ../Partage/$p /var/www/$p
 	fi
 
 done <./tmp/lsls
 
+
 while [ $i -le $countu ]; do
 	p="$(echo $up | cut -d " " -f$i)"
+
 	if [ ! -f /etc/apache2/sites-available/$p.project.fr.conf ]; then
 		cat <<FinCat >> /etc/apache2/sites-available/$p.project.fr.conf
 <VirtualHost $p.project.fr>
@@ -54,6 +56,8 @@ while [ $i -le $countu ]; do
 FinCat
 
 	else
+		a2dissite $p.project.fr.conf
+
 
 		sed '/Deny from all/d' /etc/apache2/sites-available/$p.project.fr.conf
 		sed -i '/Allow from 10.0.2/c\Allow from all' /etc/apache2/sites-available/$p.project.fr.conf
@@ -93,6 +97,8 @@ while [ $j -le $countd ]; do
 FinCat
 
 	else
+		a2dissite $p.project.fr.conf
+
 		sed '/Allow from all$/,$d' /etc/apache2/sites-available/$p.project.fr.conf # Supprime les lignes après Allow from all
 
 	cat <<FinCat >> /etc/apache2/sites-available/$p.project.fr.conf
@@ -108,8 +114,9 @@ FinCat
 FinCat
 
 	fi
-	a2ensite $p.project.fr.conf
 	sh ./script_dns.sh $p
+	a2ensite $p.project.fr.conf
+
 j=$[$j+1]
 done
 
