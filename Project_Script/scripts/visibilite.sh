@@ -1,13 +1,15 @@
 #!/bin/bash
 
+
 rm -f ./tmp/lsls ./tmp/upfinal ./tmp/downfinal
 
-up=$(grep -i -E \;up ../Project/updown | cut -d";" -f1)
-down=$(grep -i -E \;down ../Project/updown | cut -d";" -f1)
+up=$(grep -i -E \;up ../Partage/updown | cut -d";" -f1)
+down=$(grep -i -E \;down ../Partage/updown | cut -d";" -f1)
 countu=$[$(echo $up | grep -o " " | wc -l)+1]
 countd=$[$(echo $down | grep -o " " | wc -l)+1]
 
-ls -d ../Project/*/ | cut -d "/" -f 3 >> ./tmp/lsls
+unzip ../Partage/*.zip
+ls -d ../Partage/*/ | cut -d "/" -f 3 >> ./tmp/lsls
 
 i="1"
 j="1"
@@ -17,9 +19,9 @@ while read p; do
 		tar -zcvf "$p"-`date "+%d.%m.%Y"`.tar.gz /var/www/$p
 		rm -rf /var/www/$p
 		mv "$p"-`date "+%d.%m.%Y"`.tar.gz ../backup
-		mv ../Project/$p /var/www/"$p"
+		mv ../Partage/$p /var/www/"$p"
 	else 
-		mv ../Project/$p /var/www/"$p"
+		mv ../Partage/$p /var/www/"$p"
 	fi
 
 done <./tmp/lsls
@@ -56,7 +58,7 @@ FinCat
 	fi
 
 	echo $p >> ./tmp/upfinal
-	sh ./script_dns_modifie.sh $p
+	sh ./script_dns.sh $p
 	a2ensite $p.project.fr.conf
 
 	i=$[$i+1]
@@ -107,9 +109,10 @@ do
 
 	fi
 	a2ensite $p.project.fr.conf
-	sh ./script_dns_modifie.sh $p
+	sh ./script_dns.sh $p
 j=$[$j+1]
 done
+
 
 # Boucle pour le dns local où tous les sites sont accessibles
 
