@@ -21,7 +21,14 @@
 
 
 
-
+#Permet de se connecter au compte développeur du serveur de fichier
+#
+$user = "developpeur"
+$mdp = "Vegeta31400"
+$IP = "\\10.0.2.4"
+net use $IP $mdp /USER:$user
+#
+set-location "C:/Projects/"
 #chemin du repertoire a sauvegarder
 $src = "C:/Projects"
 #
@@ -41,7 +48,7 @@ Foreach ($element in get-childitem $src)
     if($date -eq $dateelement)
     {
         $zip = $element.FullName + '.zip'
-        Get-Item $element | Compress-tozip $zip
-        move-item $zip $dst
+        Get-Item $element.FullName | Compress-tozip $zip
+        move-item -path $zip -destination $dst
     }
 }
