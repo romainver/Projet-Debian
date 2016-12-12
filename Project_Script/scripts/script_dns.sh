@@ -1,10 +1,10 @@
 #!/bin/bash
 
-if [ ! -a /etc/bind/db.$1.project.fr ]; then
+if [ ! -f /etc/bind/db.$1.project.fr ]; then
 
 	#Création du fichier de zone
 
-	cat << NFFS > /etc/bind/db.$1.project.fr
+	cat <<NFFS > /etc/bind/db.$1.project.fr
 
 \$TTL	604800
 @	IN	SOA	PS.$1.project.fr. root.$1.project.fr. (
@@ -17,24 +17,21 @@ if [ ! -a /etc/bind/db.$1.project.fr ]; then
 
 PS	IN	A	10.0.2.20 # Modifier l'ip en fonction de la machine utilisée
 
-	NFFS
+NFFS
 
-	cat << LZF >> /etc/bind/named.conf.local
+	cat <<LZF >> /etc/bind/named.conf.local
 
 zone "$1.fr" IN {
 	type master;
 	file "etc/bind/db.$1.project.fr";
 };
 
-	LZF
+LZF
 
-	bind="/etc/init.d/bind9 restart"
-
-	eval $bind
 
 	# Création du fichier de zone inversée
 
-	cat << ILZF >> /etc/bind/named.conf.local
+	cat <<ILZF >> /etc/bind/named.conf.local
 
 zone "2.0.10.in-addr.arpa" { # Modifier l'ip inversée en fonction de la machine utilisée
 	type master;
@@ -42,9 +39,9 @@ zone "2.0.10.in-addr.arpa" { # Modifier l'ip inversée en fonction de la machine
 	file "/etc/bind/db.$1.project.inv";
 };
 
-	ILZF
+ILZF
 
-	cat << DBIF >> /etc/bind/db.$1.project.inv
+	cat <<DBIF >> /etc/bind/db.$1.project.inv
 
 \$TTL	604800
 @	IN	SOA	PS.$1..project.fr. root.$1.project.fr. (
@@ -56,8 +53,6 @@ zone "2.0.10.in-addr.arpa" { # Modifier l'ip inversée en fonction de la machine
 @	IN	NS	PS.$1.project.fr.
 20	IN	PTR	PS.$1.project.fr. # Le numéro correspond au dernier élément de l'adresse IP uilisée
 
-		DBIF
-
-	eval $bind 
+DBIF
 
 fi
